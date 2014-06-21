@@ -1,0 +1,35 @@
+cat << EOB
+
+<?xml version="1.0"?>
+
+<items>
+
+  <item uid="i" arg="{query}">
+    <title>Topic</title>
+    <subtitle>search /common/topic</subtitle>
+  </item>
+
+  <item uid="c" arg="type {query}">
+    <title>Type</title>
+    <subtitle>search /type/type</subtitle>
+  </item>
+
+  <item uid="c" arg="property {query}">
+    <title>Property</title>
+    <subtitle>search /type/property</subtitle>
+  </item>
+
+  <item uid="c" arg="person {query}">
+    <title>Person</title>
+    <subtitle>search /people/person</subtitle>
+  </item>
+
+  <item uid="c" arg="location {query}">
+    <title>Location</title>
+    <subtitle>search /location/location</subtitle>
+  </item>
+
+
+</items>
+
+EOB

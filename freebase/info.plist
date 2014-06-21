@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>bundleid</key>
+	<string></string>
+	<key>category</key>
+	<string>Productivity</string>
+	<key>connections</key>
+	<dict>
+		<key>87D2CF1D-75D9-4A7A-A6CF-FFA2C087BBB8</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>511EBF53-E98C-47D9-BEAD-C3B5C522ABB0</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+			<dict>
+				<key>destinationuid</key>
+				<string>57B1A6EB-433A-4C6D-B786-0AD2515136A4</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+		</array>
+		<key>EE1E26F9-9D65-4917-8B32-4F82A4D298CA</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>87D2CF1D-75D9-4A7A-A6CF-FFA2C087BBB8</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+		</array>
+	</dict>
+	<key>createdby</key>
+	<string>Spencer Kelly</string>
+	<key>description</key>
+	<string>copy a freebase topic or type id to clipboard</string>
+	<key>disabled</key>
+	<false/>
+	<key>name</key>
+	<string>Freebase Search</string>
+	<key>objects</key>
+	<array>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>escaping</key>
+				<integer>4</integer>
+				<key>script</key>
+				<string>import cStringIO
+import urllib2
+import json
+import re
+
+q= '{query}'
+# q= "type river"
+q= q.strip()
+
+t= "/common/topic"
+reg="^type "
+if re.search(reg, q):
+  t='/type/type'
+  q= re.sub(reg,'', q)
+
+reg="^person "
+if re.search(reg, q):
+  t='/people/person'
+  q= re.sub(reg,'', q)
+
+reg="^location "
+if re.search(reg, q):
+  t='/location/location'
+  q= re.sub(reg,'', q)
+
+reg="^property "
+if re.search(reg, q):
+  t='/type/property'
+  q= re.sub(reg,'', q)
+
+key= "AIzaSyD5GmnQC7oW9GJIWPGsJUojspMMuPusAxI" #please don't abuse my key ;)
+URL= "https://www.googleapis.com/freebase/v1/search?query=" + q + "&amp;limit=1&amp;type=" + t + "&amp;key=" + key
+data_string= urllib2.urlopen(URL).read()
+result = json.loads(data_string)
+if t == '/type/type' or t == "/type/property":
+  print result['result'][0]['id']
+else:
+  print result['result'][0]['mid']</string>
+				<key>type</key>
+				<integer>3</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>87D2CF1D-75D9-4A7A-A6CF-FFA2C087BBB8</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttype</key>
+				<integer>1</integer>
+				<key>escaping</key>
+				<integer>127</integer>
+				<key>keyword</key>
+				<string>freebase</string>
+				<key>runningsubtext</key>
+				<string>..</string>
+				<key>script</key>
+				<string>cat &lt;&lt; EOB
+
+&lt;?xml version="1.0"?&gt;
+
+&lt;items&gt;
+
+  &lt;item uid="i" arg="{query}"&gt;
+    &lt;title&gt;Topic&lt;/title&gt;
+    &lt;subtitle&gt;search /common/topic&lt;/subtitle&gt;
+  &lt;/item&gt;
+
+  &lt;item uid="c" arg="type {query}"&gt;
+    &lt;title&gt;Type&lt;/title&gt;
+    &lt;subtitle&gt;search /type/type&lt;/subtitle&gt;
+  &lt;/item&gt;
+
+  &lt;item uid="c" arg="property {query}"&gt;
+    &lt;title&gt;Property&lt;/title&gt;
+    &lt;subtitle&gt;search /type/property&lt;/subtitle&gt;
+  &lt;/item&gt;
+
+  &lt;item uid="c" arg="person {query}"&gt;
+    &lt;title&gt;Person&lt;/title&gt;
+    &lt;subtitle&gt;search /people/person&lt;/subtitle&gt;
+  &lt;/item&gt;
+
+  &lt;item uid="c" arg="location {query}"&gt;
+    &lt;title&gt;Location&lt;/title&gt;
+    &lt;subtitle&gt;search /location/location&lt;/subtitle&gt;
+  &lt;/item&gt;
+
+
+&lt;/items&gt;
+
+EOB</string>
+				<key>subtext</key>
+				<string>search freebase</string>
+				<key>title</key>
+				<string>Freebase</string>
+				<key>type</key>
+				<integer>0</integer>
+				<key>withspace</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.scriptfilter</string>
+			<key>uid</key>
+			<string>EE1E26F9-9D65-4917-8B32-4F82A4D298CA</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>autopaste</key>
+				<true/>
+				<key>clipboardtext</key>
+				<string>{query}</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.output.clipboard</string>
+			<key>uid</key>
+			<string>511EBF53-E98C-47D9-BEAD-C3B5C522ABB0</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>type</key>
+			<string>alfred.workflow.output.largetype</string>
+			<key>uid</key>
+			<string>57B1A6EB-433A-4C6D-B786-0AD2515136A4</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+	</array>
+	<key>readme</key>
+	<string>type 'famous sequentiallayout' and it pastes the require statement into your open text editor, or adds it to your clipboard</string>
+	<key>uidata</key>
+	<dict>
+		<key>511EBF53-E98C-47D9-BEAD-C3B5C522ABB0</key>
+		<dict>
+			<key>ypos</key>
+			<real>100</real>
+		</dict>
+		<key>57B1A6EB-433A-4C6D-B786-0AD2515136A4</key>
+		<dict>
+			<key>ypos</key>
+			<real>220</real>
+		</dict>
+		<key>87D2CF1D-75D9-4A7A-A6CF-FFA2C087BBB8</key>
+		<dict>
+			<key>ypos</key>
+			<real>30</real>
+		</dict>
+		<key>EE1E26F9-9D65-4917-8B32-4F82A4D298CA</key>
+		<dict>
+			<key>ypos</key>
+			<real>30</real>
+		</dict>
+	</dict>
+	<key>webaddress</key>
+	<string>http://spencermounta.in</string>
+</dict>
+</plist>
