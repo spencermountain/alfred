@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>bundleid</key>
+	<string></string>
+	<key>category</key>
+	<string>Productivity</string>
+	<key>connections</key>
+	<dict>
+		<key>1457D4B8-BA7B-4B07-BD21-8EB11C71BC74</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>87D2CF1D-75D9-4A7A-A6CF-FFA2C087BBB8</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+		</array>
+		<key>87D2CF1D-75D9-4A7A-A6CF-FFA2C087BBB8</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>511EBF53-E98C-47D9-BEAD-C3B5C522ABB0</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+		</array>
+	</dict>
+	<key>createdby</key>
+	<string>Spencer Kelly</string>
+	<key>description</key>
+	<string>helper for famo.us class names and directories</string>
+	<key>disabled</key>
+	<false/>
+	<key>name</key>
+	<string>Famo.us class paths</string>
+	<key>objects</key>
+	<array>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttype</key>
+				<integer>0</integer>
+				<key>keyword</key>
+				<string>famous</string>
+				<key>subtext</key>
+				<string>require famous classes</string>
+				<key>text</key>
+				<string>Famo.us classpaths</string>
+				<key>withspace</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.keyword</string>
+			<key>uid</key>
+			<string>1457D4B8-BA7B-4B07-BD21-8EB11C71BC74</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>autopaste</key>
+				<true/>
+				<key>clipboardtext</key>
+				<string>{query}</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.output.clipboard</string>
+			<key>uid</key>
+			<string>511EBF53-E98C-47D9-BEAD-C3B5C522ABB0</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>escaping</key>
+				<integer>4</integer>
+				<key>script</key>
+				<string>/usr/local/bin/node &lt;&lt;-'CODE'
+var classes={
+  "viewsequence": "require(\"famous/core/ViewSequence.js\");",
+  "view": "require(\"famous/core/View.js\");",
+  "transform": "require(\"famous/core/Transform.js\");",
+  "surface": "require(\"famous/physics/constraints/Surface.js\");",
+  "specparser": "require(\"famous/core/SpecParser.js\");",
+  "scene": "require(\"famous/core/Scene.js\");",
+  "rendernode": "require(\"famous/core/RenderNode.js\");",
+  "optionsmanager": "require(\"famous/core/OptionsManager.js\");",
+  "modifier": "require(\"famous/core/Modifier.js\");",
+  "group": "require(\"famous/core/Group.js\");",
+  "eventhandler": "require(\"famous/core/EventHandler.js\");",
+  "eventemitter": "require(\"famous/core/EventEmitter.js\");",
+  "entity": "require(\"famous/core/Entity.js\");",
+  "engine": "require(\"famous/core/Engine.js\");",
+  "elementallocator": "require(\"famous/core/ElementAllocator.js\");",
+  "context": "require(\"famous/core/Context.js\");",
+  "eventmapper": "require(\"famous/events/EventMapper.js\");",
+  "eventfilter": "require(\"famous/events/EventFilter.js\");",
+  "eventarbiter": "require(\"famous/events/EventArbiter.js\");",
+  "twofingersync": "require(\"famous/inputs/TwoFingerSync.js\");",
+  "touchtracker": "require(\"famous/inputs/TouchTracker.js\");",
+  "touchsync": "require(\"famous/inputs/TouchSync.js\");",
+  "scrollsync": "require(\"famous/inputs/ScrollSync.js\");",
+  "scalesync": "require(\"famous/inputs/ScaleSync.js\");",
+  "rotatesync": "require(\"famous/inputs/RotateSync.js\");",
+  "pinchsync": "require(\"famous/inputs/PinchSync.js\");",
+  "mousesync": "require(\"famous/inputs/MouseSync.js\");",
+  "genericsync": "require(\"famous/inputs/GenericSync.js\");",
+  "fastclick": "require(\"famous/inputs/FastClick.js\");",
+  "vector": "require(\"famous/math/Vector.js\");",
+  "utilities": "require(\"famous/math/Utilities.js\");",
+  "random": "require(\"famous/math/Random.js\");",
+  "quaternion": "require(\"famous/math/Quaternion.js\");",
+  "matrix": "require(\"famous/math/Matrix.js\");",
+  "statemodifier": "require(\"famous/modifiers/StateModifier.js\");",
+  "modifierchain": "require(\"famous/modifiers/ModifierChain.js\");",
+  "fader": "require(\"famous/modifiers/Fader.js\");",
+  "draggable": "require(\"famous/modifiers/Draggable.js\");",
+  "physicsengine": "require(\"famous/physics/PhysicsEngine.js\");",
+  "rectangle": "require(\"famous/physics/bodies/Rectangle.js\");",
+  "particle": "require(\"famous/physics/bodies/Particle.js\");",
+  "circle": "require(\"famous/physics/bodies/Circle.js\");",
+  "body": "require(\"famous/physics/bodies/Body.js\");",
+  "walls": "require(\"famous/physics/constraints/Walls.js\");",
+  "wall": "require(\"famous/physics/constraints/Wall.js\");",
+  "snap": "require(\"famous/physics/constraints/Snap.js\");",
+  "distance": "require(\"famous/physics/constraints/Distance.js\");",
+  "curve": "require(\"famous/physics/constraints/Curve.js\");",
+  "constraint": "require(\"famous/physics/constraints/Constraint.js\");",
+  "collision": "require(\"famous/physics/constraints/Collision.js\");",
+  "vectorfield": "require(\"famous/physics/forces/VectorField.js\");",
+  "spring": "require(\"famous/physics/forces/Spring.js\");",
+  "rotationalspring": "require(\"famous/physics/forces/RotationalSpring.js\");",
+  "rotationaldrag": "require(\"famous/physics/forces/RotationalDrag.js\");",
+  "repulsion": "require(\"famous/physics/forces/Repulsion.js\");",
+  "force": "require(\"famous/physics/forces/Force.js\");",
+  "drag": "require(\"famous/physics/forces/Drag.js\");",
+  "symplecticeuler": "require(\"famous/physics/integrators/SymplecticEuler.js\");",
+  "videosurface": "require(\"famous/surfaces/VideoSurface.js\");",
+  "inputsurface": "require(\"famous/surfaces/InputSurface.js\");",
+  "imagesurface": "require(\"famous/surfaces/ImageSurface.js\");",
+  "containersurface": "require(\"famous/surfaces/ContainerSurface.js\");",
+  "canvassurface": "require(\"famous/surfaces/CanvasSurface.js\");",
+  "walltransition": "require(\"famous/transitions/WallTransition.js\");",
+  "tweentransition": "require(\"famous/transitions/TweenTransition.js\");",
+  "transitionabletransform": "require(\"famous/transitions/TransitionableTransform.js\");",
+  "transitionable": "require(\"famous/transitions/Transitionable.js\");",
+  "springtransition": "require(\"famous/transitions/SpringTransition.js\");",
+  "snaptransition": "require(\"famous/transitions/SnapTransition.js\");",
+  "multipletransition": "require(\"famous/transitions/MultipleTransition.js\");",
+  "easing": "require(\"famous/transitions/Easing.js\");",
+  "cachedmap": "require(\"famous/transitions/CachedMap.js\");",
+  "utility": "require(\"famous/utilities/Utility.js\");",
+  "timer": "require(\"famous/utilities/Timer.js\");",
+  "keycodes": "require(\"famous/utilities/KeyCodes.js\");",
+  "scrollview": "require(\"famous/views/Scrollview.js\");",
+  "sequentiallayout": "require(\"famous/views/SequentialLayout.js\");",
+  "scroller": "require(\"famous/views/Scroller.js\");",
+  "scrollcontainer": "require(\"famous/views/ScrollContainer.js\");",
+  "rendercontroller": "require(\"famous/views/RenderController.js\");",
+  "lightbox": "require(\"famous/views/Lightbox.js\");",
+  "headerfooterlayout": "require(\"famous/views/HeaderFooterLayout.js\");",
+  "gridlayout": "require(\"famous/views/GridLayout.js\");",
+  "flipper": "require(\"famous/views/Flipper.js\");",
+  "edgeswapper": "require(\"famous/views/EdgeSwapper.js\");",
+  "deck": "require(\"famous/views/Deck.js\");",
+  "navigationbar": "require(\"famous/widgets/NavigationBar.js\");",
+  "togglebutton": "require(\"famous/widgets/ToggleButton.js\");",
+  "tabbar": "require(\"famous/widgets/TabBar.js\");",
+  "slider": "require(\"famous/widgets/Slider.js\");"
+}
+
+var q= "{query}"
+q= ''+q.toLowerCase()+'';
+q= q.replace(/ /g,'')
+console.log((classes[q]||''));
+CODE</string>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>87D2CF1D-75D9-4A7A-A6CF-FFA2C087BBB8</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+	</array>
+	<key>readme</key>
+	<string>type 'famous sequentiallayout' and it pastes the require statement into your open text editor, or adds it to your clipboard</string>
+	<key>uidata</key>
+	<dict>
+		<key>1457D4B8-BA7B-4B07-BD21-8EB11C71BC74</key>
+		<dict>
+			<key>ypos</key>
+			<real>10</real>
+		</dict>
+		<key>511EBF53-E98C-47D9-BEAD-C3B5C522ABB0</key>
+		<dict>
+			<key>ypos</key>
+			<real>100</real>
+		</dict>
+		<key>87D2CF1D-75D9-4A7A-A6CF-FFA2C087BBB8</key>
+		<dict>
+			<key>ypos</key>
+			<real>160</real>
+		</dict>
+	</dict>
+	<key>webaddress</key>
+	<string>http://spencermounta.in</string>
+</dict>
+</plist>
